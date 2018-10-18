@@ -38,15 +38,6 @@ def googleplay_preprocess():
 
     return result
 
-def remove_outlier(df):
-    low = .05
-    high = .95
-    quant_df = df.quantile([low, high])
-    for name in list(df.columns):
-        if is_numeric_dtype(df[name]):
-            df = df[(df[name] > quant_df.loc[low, name]) & (df[name] < quant_df.loc[high, name])]
-    return df
-
 def visualization():
     result = googleplay_preprocess()
     #print(result)
